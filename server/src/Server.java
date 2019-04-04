@@ -13,18 +13,18 @@ public class Server {
     //any port. they should match
     private static int port = 1234;
     private static boolean trigger = true;
-    private static String message;
+    volatile private static String message;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         server = new ServerSocket(port);
         while (trigger) {
-            System.out.println("Connection established");
+            System.out.println("Listening mode...");
             Socket socket = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             message = (String) ois.readObject();
             System.out.println("Message Received: " + message);
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject("Hi Client " + message);
+            oos.writeObject("Hi " + message);
             ois.close();
             oos.close();
             socket.close();
