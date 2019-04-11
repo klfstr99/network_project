@@ -1,6 +1,10 @@
 # intelliJ IDE files
 .iml
 
+# eclipse IDE files
+.classpath
+.project
+
 # Compiled class file
 *.class
 
@@ -25,3 +29,4 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.gradle/
+/bin/

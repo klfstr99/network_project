@@ -10,19 +10,21 @@ public class Client {
     public static void main(String args[]) throws IOException {
 
         // declaration block
-        InetAddress address = InetAddress.getLocalHost();// gets localhost
-        Socket s1 = null;
+        InetAddress address = InetAddress.getLocalHost();// gets localhost to use when instantiate the Socket
+        Socket s1 = null; 
         String line;// message
-        BufferedReader br = null;
+        BufferedReader br = null;  
         BufferedReader is = null;// inputstream
-        PrintWriter os = null;// outputstream
+        PrintWriter os = null; // outputstream, [kf] creates a new PrintWriter, without automatic line flushing, from an existing OutputStream.
         String response;
 
-        try {//instead of "trow"
-            s1 = new Socket(address, 1234);
-            br = new BufferedReader(new InputStreamReader(System.in));
-            is = new BufferedReader(new InputStreamReader(s1.getInputStream()));
-            os = new PrintWriter(s1.getOutputStream());
+        try {//instead of "throw"
+            s1 = new Socket(address, 1234); // [kf] Creates a stream socket and connects it to the specified port number at the specified IP address.
+            br = new BufferedReader(new InputStreamReader(System.in)); 
+            /* [kf] Creates a buffering character-input stream that uses a default-sized input buffer.
+            Creates an InputStreamReader that uses the default charset using the keyboard input. */
+            is = new BufferedReader(new InputStreamReader(s1.getInputStream())); // [kf] Returns an input stream for this socket
+            os = new PrintWriter(s1.getOutputStream()); // [kf] creates a new PrintWriter, without automatic line flushing, from an existing OutputStream.
         } catch (IOException e) {
             e.printStackTrace();
             System.err.print("IO Exception");
@@ -41,7 +43,6 @@ public class Client {
                 line = br.readLine();
 
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();

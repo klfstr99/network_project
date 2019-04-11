@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-class ServerThread extends Thread {
+class ServerThread extends Thread { // [kf] Allocates new Thread objects
 
     String line = null;
     BufferedReader is = null;
